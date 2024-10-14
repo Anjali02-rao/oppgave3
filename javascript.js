@@ -89,11 +89,37 @@ const people = [
 		hobbies: ["design", "drawing", "css"]
 	}
 ];
-let combinedAge = 0;
 
 //your code here
+    let combinedAge = 0	
+	let averageAge = 0
 
-let averageAge = 0;
+for (let i = 0; i < people.length; i++) {
+	const person = people[i]
+
+	if (people[i].name === "Otto") {
+		continue
+	}
+
+	const randomCity = cities[Math.floor(Math.random() * cities.length)]
+	people[i].city = randomCity
+	
+	
+	people[i].title = people[i].male ? "Mr" : "Ms"
+	
+	 
+	people[i].age += 2
+	people[i].hobbies.unshift("coding")
+	combinedAge += people[i].age
+	}
+
+	averageAge = combinedAge / people.length
+
+
+console.log(people)
+console.log("combined Age:", combinedAge)
+console.log("average Age:", averageAge)
+
 
 /******************************************************************************
 2.
@@ -116,8 +142,30 @@ Add a second parameter to the function that decides how many faces the dice
 should have.
 diceRoller(5, 20) should return an array of 5 random numbers ranging from 1-20 
 ******************************************************************************/
+function diceRoller (numberDice) {
 
+	
+	const result = []
+	for (let i = 0; i < numberDice; i++) {
+		const randomnumber = (Math.floor(Math.random() * 6) + 1)
+		result.push(randomnumber)
+	}
+	return result
+}
 
+console.log(diceRoller(4))
+console.log(diceRoller(6))
+
+function diceRoller (numberDice, numberFaces) {
+	const result = []
+	for (let i = 0; i < numberDice; i++) {
+		const randomnumber = (Math.floor(Math.random() * 6) + 1)
+		result.push(randomnumber)
+	}
+	return result
+}
+
+console.log(diceRoller(5, 20))
 /******************************************************************************
 3.
 
@@ -141,8 +189,20 @@ Example:
 should return:
 "this text needs to be cleaned up"
 ******************************************************************************/
+function addStrings(array) {
+	const modifiedArray = []
 
+	for (let word of array) {
+		const removedWord = word.trim().toLowerCase()
+		modifiedArray.push(removedWord)
+	}
 
+return modifiedArray.join(' ')
+}
+
+const inputArray= [" thIS", "teXt  ", " nEeds ", "to", "BE", "cleANED   ", " Up"]
+
+console.log(addStrings(inputArray))
 /******************************************************************************
 4.
 
@@ -175,6 +235,47 @@ should be detected.
 I have provided some string variables to test your function with.
 ******************************************************************************/
 
+function helloChecker(txt) {
+
+	const words = txt.toLowerCase();
+
+	// for (let word of words) {
+		if (words.includes("hello")) {
+			return "HELLO detected in English."
+		}
+		else if (words.includes("ciao")) {
+			return "HELLO detected in italian."
+		} 
+		else if (words.includes("salut")) {
+			return "HELLO detected in french."
+		} 
+		else if (words.includes("hallo")) {
+			return "HELLO detected in german."
+		} 
+		else if (words.includes("hola")) {
+			return "HELLO detected in spanish."
+		} 
+		else if (words.includes("czesc")) {
+			return "HELLO detected in polish."
+		} 
+	
+		else {
+		return "No HELLO detected."
+	}}
+	
+	const greetings = [
+		"Hello, how are you today?",
+		"Diciamo ciao prima di andare!",
+		"Salut, ça va bien?",
+		"Kannst du mich hören? Hallo!",
+		"Hva er regex?",
+		"Nos saludamos con un alegre hola.",
+		"Ona pomachała i powiedziała cześć z uśmiechem.",
+		"Good afternoon gentlemen!"
+	  ];
+	
+	console.log(helloChecker("Hello, how are you today?"))
+	console.log(helloChecker("Ona pomachała i powiedziała cześć z uśmiechem."));
 
 /******************************************************************************
 5.
@@ -205,6 +306,25 @@ doubleSwap("what is the point of this?", "o", "t")
 should return "whao is ohe ptino tf ohis?"
 ******************************************************************************/
 
-function doubleSwap(string, charA, charB) {
-	//your code here
-}
+	function doubleSwap(string, charA, charB) {
+
+		let result = ""
+	  
+		for (let i = 0; i < string.length; i++) {
+		  let currentChar = string[i]
+	  
+		if (currentChar === charA) {
+			result += charB
+		  } else if (currentChar === charB) {
+			result += charA
+		  } else {
+			result += currentChar 
+		  }
+		}
+	  	return result
+	  }
+	  
+	  
+	  console.log(doubleSwap("this is a string", "i", "s"))
+	  console.log(doubleSwap("m#ybe #nother #ppro#ch is necess#ry", "#", "a"))
+	  console.log(doubleSwap("what is the point of this?", "o", "t"))
